@@ -1,6 +1,7 @@
-
 #include <iostream>
 using namespace std;
+
+class console {
 
 void write(int a){
  
@@ -20,3 +21,8 @@ int main() {
   // write(35);
     return 0;
 }
+
+
+};
+
+

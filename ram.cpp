@@ -1,14 +1,18 @@
 class ram {
 #include <string>
+#include <iostream>
+using namespace std;
+ 
+    private:
+          int* capacity;
 
     public:
-      int* capacity;
-        ram(int size){
-        capacity = new int[size];
+          ram(int size){
+         capacity = new int[size];
         }
 
 
-int read(int adress){
+ int read(int adress){
  // int arr[] = {1,2,3,4};
     //int toReturn = arr[adress];
     int a = capacity[adress];
@@ -16,7 +20,6 @@ int read(int adress){
 }
 
 void write(int adress, int x){
-
     capacity[adress] = x;
 
 }
@@ -32,7 +35,7 @@ for(int i = 0; i < a.length(); i++){
 
 int main() {
 
-}
+} 
 
 
 
