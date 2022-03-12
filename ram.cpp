@@ -12,11 +12,14 @@ using namespace std;
         }
 
 
- int read(int adress){
+/*  int read(int adress){
  // int arr[] = {1,2,3,4};
     //int toReturn = arr[adress];
     int a = capacity[adress];
 
+     cout << a;
+
+    return a;
 }
 
 void write(int adress, int x){
@@ -33,10 +36,6 @@ for(int i = 0; i < a.length(); i++){
 }
 }
 
-int main() {
-
-} 
-
-
+ */
 
 };
