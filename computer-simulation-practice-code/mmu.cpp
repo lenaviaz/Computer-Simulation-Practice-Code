@@ -4,6 +4,11 @@
 #include "rom.cpp"
 using namespace std;
 
+
+rom r1(5000);
+ram r2(5000);
+int rom_end;
+
 class mmu {
 
 private:
@@ -12,82 +17,76 @@ private:
 
 public:
     mmu() {
-      capacity = new int[size]; 
+    capacity = new int[size]; 
 }
 
 
 void initialize(int adress, string a){
-
-
+if(adress<rom_end) {
+    r1.initialize(adress, a);
+}
+if(adress>=rom_end){
+    r2.initialize(adress, a);
 }
 
-void attach(ram r1, int adress){
-  
 
 }
 
 void attach(rom r1, int adress){
+    rom_end = r1.getSize();
+   // int greatThan = r2.getSize();
+    cout << rom_end;
    
 }
 
 
+void attach(ram r2, int adress){
+  
+}
+
 
 void write(int a, int b) {
 
-
-    capacity[a] = b;
+ if(a >= 5000){
+    r2.write(a, b);
+ }
 
 }
 
 void read(int a){
 
- //if ram -> ram.read()
- //if rom -> rom.read()
-
-    cout << "I am mmu          ";
-    cout << capacity[a];
+if(a<rom_end) {
+    r1.read(a);
+}
+if(a>=rom_end){
+    r2.read(a);
+}
 }
 
 };
 
 int main(){
 
-  
+    rom r1(5000);
+    ram r2(5000);
     mmu m1;    
-    ram b1(5000);
-    rom r2(5000);
 
 
-    m1.attach(b1, 0);
+    m1.attach(r1, 5000);
     m1.attach(r2, 5000);
 
     m1.initialize(10, "hello");
+    m1.initialize(5000, "!123");
 
-    //m1.initialize(0, "hello");
+    m1.write(10, 28);
     
-   // m1.attach(b1, 5);
-
-   // b1.write(0,78);
-   // b1.write(1, 5);
-   // b1.write(2, 38);
-   // b1.write(3, 55);
-   // b1.write(4, 57);
-
-   // b1.initialize(5, "hello");
-    //r2.initialize(3, "hahaha!!!!!");
-
-    //r2.write(3, 125);
-    //should do nothing
-
-   // b1.read(5); // 104
-  //  b1.read(6); // 101
-   // b1.read(7); // 108
-  //  b1.read(8); // 108
-  //  b1.read(9); // 111
+    m1.write(5000, 28);
+   // m1.read(10);
+     m1.read(5000);
+     m1.read(10);
 
 
 
-   //r2.read(3);
     return 0;
 
 }

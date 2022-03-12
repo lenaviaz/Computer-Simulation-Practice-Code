@@ -7,13 +7,15 @@ public:
 //byte (using int for now) to char
 void write(int a){
     char c = char(a);
+    cout << "\n";
+    cout << "char value of int is: ";
     cout << c;
 }
 
 // read char from keyboard and returns the ASCII value
 void read(){
      char input;
-     cout << "Enter a character: ";
+     cout << "Enter a character: \n";
      cin>>input;
      cout << "ASCII value is:  " << int(input);
 
@@ -23,7 +25,7 @@ void read(){
 
 int main(){
     console c1;
-    //c1.read();
+    c1.read();
     c1.write(33); // should output "!"
 
 }

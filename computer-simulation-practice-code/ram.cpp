@@ -23,9 +23,10 @@ void write(int a, int b) {
     capacity[a] = b;
 }
 
-void read(int a){
+int read(int a){
     cout << "I am ram          ";
     cout << capacity[a];
+    return capacity[a];
 }
 
 

@@ -6,22 +6,30 @@ class rom {
 
 private:
     int* capacity;
+    int size;
 
 public:
-    rom(int size) {
+    rom(int s) {
+        size = s;
         capacity = new int[size];
 }
 
+int getSize(){
+    return size;
+}
+ 
 
 void write(int a, int b) {
     //capacity[a] = b;
     //does nothing because it is ROM
 }
 
-void read(int a){
-    cout << "I am ram          ";
+int read(int a){
+    cout << "I am rom          ";
     cout << capacity[a];
+    return capacity[a];
 }
+
 
 void initialize(int adress, string a){
 //starting from int adress, fill the array with each ASCII val of coorep character from a
