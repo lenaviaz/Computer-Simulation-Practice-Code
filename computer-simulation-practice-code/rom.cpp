@@ -11,7 +11,8 @@ public:
     rom(int size) {
         capacity = new int[size];
 }
-    
+
+
 void write(int a, int b) {
     //capacity[a] = b;
     //does nothing because it is ROM
@@ -23,7 +24,7 @@ void read(int a){
 }
 
 void initialize(int adress, string a){
-//starting from int adress, fill the array with each character from a
+//starting from int adress, fill the array with each ASCII val of coorep character from a
 
     for(int i = 0; i < a.length(); i++){
         char myChar = a[i];

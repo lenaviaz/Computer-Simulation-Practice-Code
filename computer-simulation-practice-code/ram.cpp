@@ -6,10 +6,17 @@ class ram {
 
 private:
     int* capacity;
+    int size;
 
 public:
-    ram(int size) {
+    ram(int s) {
+        size = s;
         capacity = new int[size];
+      
+}
+
+int getSize(){
+    return size;
 }
     
 void write(int a, int b) {
@@ -21,8 +28,9 @@ void read(int a){
     cout << capacity[a];
 }
 
+
 void initialize(int adress, string a){
-//starting from int adress, fill the array with each character from a
+//starting from int adress, fill the array with each ASCII val of coorep character from a
 
     for(int i = 0; i < a.length(); i++){
         char myChar = a[i];
