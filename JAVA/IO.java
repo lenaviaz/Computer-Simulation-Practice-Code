@@ -1,6 +1,6 @@
 public interface IO {
 
-    public String write(int a);
-    public void read();
+    public char write(int a);
+    public int read();
     
 }

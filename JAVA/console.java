@@ -9,7 +9,7 @@ public class console implements IO{
     }
 
     @Override
-    public void read() {
+    public int read() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter a character: ");
         char c = scan.next().charAt(0);

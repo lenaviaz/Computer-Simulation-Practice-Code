@@ -13,7 +13,7 @@ public class ram implements memory{
     @Override
     public void initialize(int address, String word) {
 
-        System.out.println("RAM initialize");
+        System.out.println("RAM initialize ");
         for(int i = 0; i < word.length(); i++){
             int a = (int)word.charAt(i);
     
@@ -31,10 +31,11 @@ public class ram implements memory{
 
    @Override
     public int read(int address) {
-        System.out.println(capacity[address]);
-        return capacity[address];
-    
-    
+       
+       // System.out.print("I am reading:  " + capacity[address]);
+        int toRead = capacity[address];
+
+        return toRead;
     }
     
     @Override
