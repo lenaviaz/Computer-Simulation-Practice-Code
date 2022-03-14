@@ -19,10 +19,7 @@ public class ram implements memory{
     
             capacity[address] = a;
             address++;
-
-            
         }
-        
     }
     
     public int getSize(){
@@ -31,19 +28,12 @@ public class ram implements memory{
 
    @Override
     public int read(int address) {
-       
-       // System.out.print("I am reading:  " + capacity[address]);
         int toRead = capacity[address];
-
         return toRead;
     }
     
     @Override
     public void write(int address, int a) {
         capacity[address] = a;
-    }
-    
-    
-    
-        
-    }
+    }    
+}

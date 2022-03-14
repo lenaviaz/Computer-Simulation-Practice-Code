@@ -1,40 +1,31 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class mmu implements memory{
 
-   // HashMap<Integer, Integer> mapInt = new HashMap<>();
     HashMap<Integer, memory> map = new HashMap<>();
-   //HashMap<HashMap, memory> map = new HashMap<>();
+
     public mmu(){
 
     }
 
-
     public void attach(int address, memory m1){
-       // mapInt.put(address, m1.getSize());
         map.put(address, m1);
-
-       // System.out.println(address);
     }
 
     @Override
     public void initialize(int address, String word) {
-        // TODO Auto-generated method stub
-
         for (Entry<Integer, memory> entry : map.entrySet()) {
             int key = entry.getKey();
             memory m = entry.getValue(); 
             int check = key + m.getSize();          
 
-// if(address >= key && address <= (key + m.getSize())){
-             if(key <= address && check > address){
+            if(key <= address && check > address){
                 int adjust = address - key;
                 m.initialize(adjust, word);
-                break;
+                    break;
             }  
-            // ...
+            
         }
     }
 
@@ -52,7 +43,6 @@ public class mmu implements memory{
                 
             }
         }
-       // System.out.print("IM returning zeerroooo   ");
         return 120;
     }
 
@@ -77,9 +67,9 @@ public class mmu implements memory{
         
     }
 
-
-    public static void main(String[] args){
-        mmu m1 = new mmu();
+// Not neccesary as main method now works in CPU - just in case as a backup keep for now
+   // public static void main(String[] args){
+      //  mmu m1 = new mmu();
      /*    ram r1 = new ram(1000);
         rom r2 = new rom(1000);
         ram r3 = new ram(1000);
@@ -108,5 +98,5 @@ public class mmu implements memory{
        // m1.read(1010); //outout should stay 104, rom
 
       
-}
+//}
 }

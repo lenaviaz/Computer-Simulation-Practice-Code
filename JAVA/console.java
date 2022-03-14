@@ -15,6 +15,7 @@ public class console implements IO{
         char c = scan.next().charAt(0);
 
         int a = c;
+        scan.close();
         return a;
         
     }

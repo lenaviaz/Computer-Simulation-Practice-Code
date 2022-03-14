@@ -11,7 +11,6 @@ public class rom implements memory{
     
     @Override
     public void initialize(int address, String word) {
-
         System.out.println("ROM initialize");
 
         for(int i = 0; i < word.length(); i++){

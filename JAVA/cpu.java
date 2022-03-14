@@ -1,14 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class cpu {
     
     private int[] register = new int[8];
     private mmu m1;
     private IO device;
-    private instruction inst;
 
     public cpu(){
         
@@ -18,8 +14,8 @@ public class cpu {
         this.m1 = m1;
     }
 
-    public void attachIO(IO i1){
-
+    public void attachIO(IO device){
+        this.device = device;
     }
 
     public void run(ArrayList<instruction> instrList){
@@ -29,6 +25,10 @@ public class cpu {
             evalInstr(a);
         }
 
+    }
+
+    public void getRegVal(int a){
+        System.out.println("Regiter at : " + a + " is -->   " + register[a]);
     }
 
     public void evalInstr(instruction inst){
@@ -47,38 +47,39 @@ public class cpu {
             int a = inst.toInt();
             register[inst.getval1()] = a;
 
-
         break;
 
         case "Load":
         int theAdd = inst.toInt();
-
-         m1.read(theAdd);
-
-         register[inst.getval1()] = m1.read(theAdd);
-    
+        m1.read(theAdd);
+        register[inst.getval1()] = m1.read(theAdd);
 
         break;
 
-        }
+        case "Store":
+        m1.write(inst.toInt(), register[inst.getval1()]);
 
-        
+        break;
+
+        case "InB":
+        int j = device.read();
+        register[inst.getval1()] = j; 
+
+        break;
+
+        case "OutNum":
+        device.write(register[inst.getval1()]);
+        }
     }
 
     public static void main(String[] args){
 
         ArrayList<instruction> commands = new ArrayList<>();
 
-  //      HashMap<String, List<Integer>> instructions = new HashMap<String, List<Integer>>();
-    
-      // commands.add(i3);
-
         console con1 = new console();
         ram r1 = new ram(1000);
         mmu m1 = new mmu();
         m1.attach(0, r1);
-
-       // m1.initialize(0, "!!!!!!");
 
         cpu c1 = new cpu();
         c1.attachMem(m1);
@@ -87,17 +88,24 @@ public class cpu {
 
 
         instruction i1 = new instruction("Data", 0, "!hlhe");
-        instruction i2 = new instruction("LoadImm", 0, "222");
-        instruction i3 = new instruction("Load", 1, "2");
+        instruction i2 = new instruction("LoadImm", 0, "26");
+        instruction i3 = new instruction("Load", 1, "0");
+        instruction i4 = new instruction("Store", 0, "1");
+        instruction i5 = new instruction("InB", 2, "0");
+       // instruction i6 = new instruction("OutB", 1, "0");
+
         commands.add(i1);
         commands.add(i2);
         commands.add(i3);
+        commands.add(i4);
+        commands.add(i5);
 
         c1.run(commands);
 
-        System.out.println("reg 0 is : " + c1.register[0]);
-        System.out.println("reg 1 is   " + c1.register[1]);
-        //System.out.println(c1.register[0]);
+        c1.getRegVal(0);
+        c1.getRegVal(1);
+        c1.getRegVal(2);
+
 
     }
 
