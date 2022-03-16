@@ -11,6 +11,9 @@ public class mmu implements memory{
 
     public void attach(int address, memory m1){
         map.put(address, m1);
+
+
+
     }
 
     @Override
