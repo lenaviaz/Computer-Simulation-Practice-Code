@@ -9,6 +9,7 @@ public class cpu {
     private mmu m1;
     private IO device;
     int pointer;
+    boolean running = true;
 
     public cpu(){
         
@@ -25,8 +26,13 @@ public class cpu {
     public void run(ArrayList<instruction> instrList){
        
         for(pointer = 0; pointer < instrList.size(); pointer++){
+            if(running == true){
             instruction a = instrList.get(pointer);
             evalInstr(a);
+            //System.out.println(pointer);
+            } else {
+                break;
+            }
         }
     }
 
@@ -55,48 +61,90 @@ public class cpu {
 
     public void evalInstr(instruction inst){
         
-        switch(inst.getData()){
+        switch(inst.getInstName()){
 
         case "Data":
-        int x = inst.getval1();
-        String y = inst.getval2();
+        int x = inst.getdata1();
+        String y = inst.getdata2();
         m1.initialize(x, y);
         break;
 
         case "LoadImm":
-        int a = inst.getval2int();
-        register[inst.getval1()] = a;
+        int a = inst.getloadImm2();
+        register[inst.getloadImm1()] = a;
         break;
 
         case "Load":
-        int theAdd = inst.getval2int();
-        m1.read(theAdd);
-        register[inst.getval1()] = m1.read(theAdd);
+         int theAdd = inst.getload2();
+         m1.read(theAdd);
+         register[inst.getload1()] = m1.read(theAdd);
+         break;
+
+         case "Store":
+         m1.write(inst.getstore2(), register[inst.getstore1()]);
+         break;
+
+         case "InB":
+         int j = device.read() - 48;
+         register[inst.getinb1()] = j; 
+         break;
+
+    //     case "OutB":
+    //   //  device.write()
+
+    //     break;
+
+    //     case "OutNum":
+    //     device.write(register[inst.getval1()]);
+
+    //     break;
+
+         case "OutStr": 
+         for(int i = inst.getOutstr1(); i < 100; i++){
+            if(m1.read(i) != 48){
+                device.write(m1.read(i));
+            } else{
+                System.out.println("");
+                break;
+            }
+            
+
+         }
+                 
+
+         break; 
+
+        case "Add" : 
+        register[inst.getRegc()] = register[inst.getRega()] + register[inst.getRegb()];
         break;
 
-        case "Store":
-        m1.write(inst.getval2int(), register[inst.getval1()]);
-   
 
+        case "Sub" :
+        register[inst.getRegc()] = register[inst.getRega()] - register[inst.getRegb()];
+        
         break;
 
-        case "InB":
-        int j = device.read();
-        register[inst.getval1()] = j; 
+        case "J" :
+        pointer += inst.getOffset() - 1;
         break;
 
-        case "OutB":
-      //  device.write()
+        case "JZ" :
 
+        if(register[inst.getjz1()] == 0)
+            pointer += inst.getjz2() - 1;
         break;
 
-        case "OutNum":
-        device.write(register[inst.getval1()]);
-
+        case "JNZ" :
+        if(register[inst.getjz1()] != 0)
+            pointer += inst.getjz2() - 1;
         break;
 
-        case "OutStr": 
+        case "Jreg" :
+            pointer += register[inst.getReg()];
+        break;
 
+        case "Halt" :
+            running = false;
         break;
 
         }
@@ -104,11 +152,29 @@ public class cpu {
         
     }
 
+    public void evalFibonacci(){
+
+    ArrayList<instruction> commands = new ArrayList<>();
+
+
+    instruction i1 = new instruction("Data", 0, "Enter a number between zero and nine : 0");
+    instruction out = new instruction("OutStr", 0, 0);
+    instruction i5 = new instruction("InB", 0, 0);
+
+    commands.add(i1);
+    commands.add(out);
+    commands.add(i5);
+
+
+    run(commands);
+    viewAllreg();
+    readAllmem();
+
+    }
+
 
 
     public static void main(String[] args){
-
-        ArrayList<instruction> commands = new ArrayList<>();
 
         console con1 = new console();
         ram r1 = new ram(1000);
@@ -119,26 +185,36 @@ public class cpu {
         c1.attachMem(m1);
         c1.attachIO(con1);
 
-       // c1.menu();
+        c1.evalFibonacci();
 
-        instruction i1 = new instruction("Data", 0, "h!!!!");
+
+
+/*         instruction i1 = new instruction("Data", 0, "Enter a number between zero and nine : 0");
+        instruction out = new instruction("OutStr", 0, 0);
+        instruction i5 = new instruction("InB", 0, 0);
         instruction i2 = new instruction("LoadImm", 0, 26);
-        instruction i3 = new instruction("Load", 3, 0);
-        instruction i4 = new instruction("Store", 3, 1);
-        instruction i5 = new instruction("InB", 2, 0);
-        //instruction i6 = new instruction("OutB", 1, 0);
+         instruction i3 = new instruction("Load", 3, 0);
+         instruction i4 = new instruction("Store", 3, 1);
+       //  instruction i5 = new instruction("InB", 2, 0);
+        // //instruction i6 = new instruction("OutB", 1, 0);
 
+        instruction i7 = new instruction("Add", 0, 2, 3);
+        instruction i8 = new instruction("Sub", 0, 2, 3);
+        instruction i9 = new instruction("J", 3);
+        instruction i10 = new instruction("JZ", 1, 2);
+        instruction i11 = new instruction("JNZ", 2, 8);
+        instruction i12 = new instruction("JReg", 2);
+        instruction i13 = new instruction("Halt");
 
-        commands.add(i1);
-        commands.add(i2);
-        commands.add(i3);
-        commands.add(i4);
-        commands.add(i5);
-       // commands.add(i6);
+         commands.add(i1);
+         commands.add(out);
+         commands.add(i5);
+
+        
 
         c1.run(commands);
         c1.viewAllreg();
-        c1.readAllmem();
+        c1.readAllmem(); */
 
     }
 }

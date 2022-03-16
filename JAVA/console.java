@@ -5,7 +5,7 @@ public class console implements IO{
     @Override
     public char write(int a) {
        char b = (char) a;
-       System.out.println(b);
+       System.out.print(b);
         return b;
     }
 
