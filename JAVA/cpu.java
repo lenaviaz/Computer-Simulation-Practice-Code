@@ -143,7 +143,7 @@ public class cpu {
         break;
 
         case "Halt" :
-        System.out.print("halt program");
+       // System.out.print("halt program");
             running = false;
         break;
 
@@ -164,6 +164,7 @@ public class cpu {
     instruction i1 = new instruction("Data", 0, "Enter a number between zero and nine : 0");
     instruction i2 = new instruction("OutStr", 0, 0);
     instruction i3 = new instruction("InB",7, 0);
+    instruction storeInt = new instruction("Store", 7, 60);
     // instruction temp = new instruction("Add", 7, 5, 5);
 
     // instruction mult1 = new instruction("Add", 7,7,7);
@@ -179,7 +180,7 @@ public class cpu {
     instruction add2 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add3 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub = new instruction("Sub", 7, 6, 7);
-    instruction check0 = new instruction("JZ", 7, 26); //add 1
+    instruction check0 = new instruction("JZ", 7, 46); //ad
 
     // first itteration complete - fib of 1 is last reg
 
@@ -187,7 +188,7 @@ public class cpu {
     instruction add5 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add6 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub1 = new instruction("Sub", 7, 6, 7);
-    instruction check1 = new instruction("JZ", 7, 21); // add 1
+    instruction check1 = new instruction("JZ", 7, 41); // add 1
 
     //second itteration complete
 
@@ -196,7 +197,7 @@ public class cpu {
     instruction add8 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add9 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub2 = new instruction("Sub", 7, 6, 7);
-    instruction check2 = new instruction("JZ", 7, 16);
+    instruction check2 = new instruction("JZ", 7, 36);
 
     //third itteration complete
 
@@ -204,7 +205,7 @@ public class cpu {
     instruction add11 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add12 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub3 = new instruction("Sub", 7, 6, 7);
-    instruction check3 = new instruction("JZ", 7, 11);
+    instruction check3 = new instruction("JZ", 7, 31);
 
     //third itteration complete
 
@@ -213,7 +214,7 @@ public class cpu {
     instruction add14 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add15 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub4 = new instruction("Sub", 7, 6, 7);
-    instruction check4 = new instruction("JZ", 7, 6);
+    instruction check4 = new instruction("JZ", 7, 26);
 
 //four itteration complete
 
@@ -222,16 +223,53 @@ public class cpu {
     instruction add17 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
     instruction add18 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
     instruction sub5 = new instruction("Sub", 7, 6, 7);
-    instruction check5 = new instruction("JZ", 7, 0);
+    instruction check5 = new instruction("JZ", 7, 21);
 
 //fifth itteration complete
 
+    instruction add19 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+    instruction add20 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+    instruction add21 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction sub6 = new instruction("Sub", 7, 6, 7);
+    instruction check6 = new instruction("JZ", 7, 16);
+
+//sixth itteration complete
+
+        
+instruction add22 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+instruction add23 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+instruction add24 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+instruction sub7 = new instruction("Sub", 7, 6, 7);
+instruction check7 = new instruction("JZ", 7, 11);
 
 
+//7th itteration complete
+
+instruction add25 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+instruction add26 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+instruction add27 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+instruction sub8 = new instruction("Sub", 7, 6, 7);
+instruction check8 = new instruction("JZ", 7, 6);
+
+//8th itteration
+
+instruction add28 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+instruction add29 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+instruction add30 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+instruction sub9 = new instruction("Sub", 7, 6, 7);
+instruction check9 = new instruction("JZ", 7, 0);
 
 
 
     instruction halt1 = new instruction("Halt");
+
+    instruction finalread = new instruction("Data", 30, "Fibonnaci number is :  0");
+    instruction storeFib = new instruction("Store", 0, 59);
+    
+    
+
+    instruction finalread2 = new instruction("OutStr", 30, 0);
+    
 
 
     //instruction i5 = new instruction("JNZ", 0, 2); // if zero jump to halt
@@ -246,49 +284,76 @@ public class cpu {
     commands.add(i1);
     commands.add(i2);
     commands.add(i3);
-    // commands.add(temp);
-    // commands.add(mult1);
-    // commands.add(mult2);
+    commands.add(storeInt);
     commands.add(one);
     commands.add(add1);
     commands.add(add2);
     commands.add(add3);
     commands.add(sub);
     commands.add(check0);
-     commands.add(add4);
-      commands.add(add5);
-      commands.add(add6);
-      commands.add(sub1);
-      commands.add(check1);
+    commands.add(add4);
+    commands.add(add5);
+    commands.add(add6);
+    commands.add(sub1);
+    commands.add(check1);
 
      commands.add(add7); 
      commands.add(add8);
-      commands.add(add9);
-      commands.add(sub2);
-      commands.add(check2);
+     commands.add(add9);
+     commands.add(sub2);
+     commands.add(check2);
 
-        commands.add(add10);
-        commands.add(add11);
-        commands.add(add12);
-        commands.add(sub3);
-        commands.add(check3);
+     commands.add(add10);
+     commands.add(add11);
+     commands.add(add12);
+     commands.add(sub3);
+     commands.add(check3);
 
-        commands.add(add13);
-        commands.add(add14);
-        commands.add(add15);
-        commands.add(sub4);
-        commands.add(check4);
+     commands.add(add13);
+     commands.add(add14);
+     commands.add(add15);
+     commands.add(sub4);
+     commands.add(check4);
 
-        commands.add(add16);
-        commands.add(add17);
-        commands.add(add18);
-        commands.add(sub5);
-        commands.add(check5);
+     commands.add(add16);
+     commands.add(add17);
+     commands.add(add18);
+     commands.add(sub5);
+     commands.add(check5);
 
-      commands.add(halt1);
+     commands.add(add19);
+     commands.add(add20);
+     commands.add(add21);
+     commands.add(sub6);
+     commands.add(check6);
+
+     commands.add(add22);
+     commands.add(add23);
+     commands.add(add24);
+     commands.add(sub7);
+     commands.add(check7);
+
+     commands.add(add25);
+     commands.add(add26);
+     commands.add(add27);
+     commands.add(sub8);
+     commands.add(check8);
+
+     commands.add(add28);
+     commands.add(add29);
+     commands.add(add30);
+     commands.add(sub9);
+     commands.add(check9);
+
+
+     commands.add(finalread);
+     commands.add(storeFib);
+     commands.add(finalread2);
+     commands.add(halt1);//goes here
 
 
     run(commands);
+    System.out.println(register[0]);
     viewAllreg();
     readAllmem();
 
@@ -306,7 +371,6 @@ public class cpu {
         cpu c1 = new cpu();
         c1.attachMem(m1);
         c1.attachIO(con1);
-
         c1.evalFibonacci();
 
 

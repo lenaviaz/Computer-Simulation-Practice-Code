@@ -9,6 +9,7 @@ public class console implements IO{
         return b;
     }
 
+
     @Override
     public int read() {
         Scanner scan = new Scanner(System.in);
