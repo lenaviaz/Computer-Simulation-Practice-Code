@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Instructions.instruction;
 
@@ -29,15 +28,10 @@ public class cpu {
             if(running == true){
             instruction a = instrList.get(pointer);
             evalInstr(a);
-            //System.out.println(pointer);
             } else {
                 break;
             }
         }
-    }
-
-    public void getRegVal(int a){
-        System.out.println("Regiter at : " + a + " is -->   " + register[a]);
     }
 
     public void viewAllreg(){
@@ -80,26 +74,25 @@ public class cpu {
          register[inst.getload1()] = m1.read(theAdd);
          break;
 
-         case "Store":
+        case "Store":
          m1.write(inst.getstore2(), register[inst.getstore1()]);
          break;
 
-         case "InB":
+        case "InB":
          int j = device.read() - 48;
          register[inst.getinb1()] = j; 
          break;
 
-    //     case "OutB":
-    //   //  device.write()
+        case "OutB":
+        //device.write();
 
-    //     break;
+        break;
 
-    //     case "OutNum":
-    //     device.write(register[inst.getval1()]);
+        case "OutNum":
+        //device.write(register[inst.getval1()]);
+        break;
 
-    //     break;
-
-         case "OutStr": 
+        case "OutStr": 
          for(int i = inst.getOutstr1(); i < 100; i++){
             if(m1.read(i) != 48){
                 device.write(m1.read(i));
@@ -143,7 +136,6 @@ public class cpu {
         break;
 
         case "Halt" :
-       // System.out.print("halt program");
             running = false;
         break;
 
@@ -165,120 +157,76 @@ public class cpu {
     instruction i2 = new instruction("OutStr", 0, 0);
     instruction i3 = new instruction("InB",7, 0);
     instruction storeInt = new instruction("Store", 7, 60);
-    // instruction temp = new instruction("Add", 7, 5, 5);
-
-    // instruction mult1 = new instruction("Add", 7,7,7);
-    // instruction mult2 = new instruction("Add", 7,5,7);
-
-
     instruction one = new instruction("LoadImm", 6, 1);
-
-    //we have the value to add to the counter and the negative itterator
-   // instruction check = new instruction("JZ", 7, x);
 
     instruction add1 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add2 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add3 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add3 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub = new instruction("Sub", 7, 6, 7);
     instruction check0 = new instruction("JZ", 7, 46); //ad
 
-    // first itteration complete - fib of 1 is last reg
-
     instruction add4 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add5 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add6 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add6 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub1 = new instruction("Sub", 7, 6, 7);
-    instruction check1 = new instruction("JZ", 7, 41); // add 1
-
-    //second itteration complete
-
+    instruction check1 = new instruction("JZ", 7, 41);
     
     instruction add7 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add8 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add9 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add9 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub2 = new instruction("Sub", 7, 6, 7);
     instruction check2 = new instruction("JZ", 7, 36);
 
-    //third itteration complete
-
     instruction add10 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add11 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add12 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add12 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub3 = new instruction("Sub", 7, 6, 7);
     instruction check3 = new instruction("JZ", 7, 31);
 
-    //third itteration complete
-
-
     instruction add13 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add14 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add15 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add15 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub4 = new instruction("Sub", 7, 6, 7);
     instruction check4 = new instruction("JZ", 7, 26);
-
-//four itteration complete
 
 
     instruction add16 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add17 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add18 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add18 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub5 = new instruction("Sub", 7, 6, 7);
     instruction check5 = new instruction("JZ", 7, 21);
 
-//fifth itteration complete
-
     instruction add19 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add20 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-    instruction add21 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
+    instruction add21 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
     instruction sub6 = new instruction("Sub", 7, 6, 7);
     instruction check6 = new instruction("JZ", 7, 16);
 
-//sixth itteration complete
-
         
-instruction add22 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
-instruction add23 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-instruction add24 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
-instruction sub7 = new instruction("Sub", 7, 6, 7);
-instruction check7 = new instruction("JZ", 7, 11);
+    instruction add22 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+    instruction add23 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+    instruction add24 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
+    instruction sub7 = new instruction("Sub", 7, 6, 7);
+    instruction check7 = new instruction("JZ", 7, 11);
 
 
-//7th itteration complete
-
-instruction add25 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
-instruction add26 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-instruction add27 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
-instruction sub8 = new instruction("Sub", 7, 6, 7);
-instruction check8 = new instruction("JZ", 7, 6);
-
-//8th itteration
-
-instruction add28 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
-instruction add29 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
-instruction add30 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 //count = 1
-instruction sub9 = new instruction("Sub", 7, 6, 7);
-instruction check9 = new instruction("JZ", 7, 0);
+    instruction add25 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+    instruction add26 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+    instruction add27 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
+    instruction sub8 = new instruction("Sub", 7, 6, 7);
+    instruction check8 = new instruction("JZ", 7, 6);
 
 
-
+    instruction add28 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
+    instruction add29 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
+    instruction add30 = new instruction("Add", 2, 3, 1); //adds 1 and 2 into 1 
+    instruction sub9 = new instruction("Sub", 7, 6, 7);
+    instruction check9 = new instruction("JZ", 7, 0);
     instruction halt1 = new instruction("Halt");
-
     instruction finalread = new instruction("Data", 30, "Fibonnaci number is :  0");
     instruction storeFib = new instruction("Store", 0, 59);
-    
-    
-
     instruction finalread2 = new instruction("OutStr", 30, 0);
     
-
-
-    //instruction i5 = new instruction("JNZ", 0, 2); // if zero jump to halt
-   // instruction i6 = new instruction("JNZ", 0, 1);
-    //this means zero was entered to spit out zero and hault the program
-  //  instruction i7 = new instruction("Halt");
-   // instruction i8 = new instruction("Test");//halt code
-
-
     commands.add(set1);
     commands.add(set2);
     commands.add(i1);
@@ -349,7 +297,7 @@ instruction check9 = new instruction("JZ", 7, 0);
      commands.add(finalread);
      commands.add(storeFib);
      commands.add(finalread2);
-     commands.add(halt1);//goes here
+     commands.add(halt1);//final
 
 
     run(commands);
@@ -358,8 +306,6 @@ instruction check9 = new instruction("JZ", 7, 0);
     readAllmem();
 
     }
-
-
 
     public static void main(String[] args){
 
@@ -372,35 +318,6 @@ instruction check9 = new instruction("JZ", 7, 0);
         c1.attachMem(m1);
         c1.attachIO(con1);
         c1.evalFibonacci();
-
-
-
-/*         instruction i1 = new instruction("Data", 0, "Enter a number between zero and nine : 0");
-        instruction out = new instruction("OutStr", 0, 0);
-        instruction i5 = new instruction("InB", 0, 0);
-        instruction i2 = new instruction("LoadImm", 0, 26);
-         instruction i3 = new instruction("Load", 3, 0);
-         instruction i4 = new instruction("Store", 3, 1);
-       //  instruction i5 = new instruction("InB", 2, 0);
-        // //instruction i6 = new instruction("OutB", 1, 0);
-
-        instruction i7 = new instruction("Add", 0, 2, 3);
-        instruction i8 = new instruction("Sub", 0, 2, 3);
-        instruction i9 = new instruction("J", 3);
-        instruction i10 = new instruction("JZ", 1, 2);
-        instruction i11 = new instruction("JNZ", 2, 8);
-        instruction i12 = new instruction("JReg", 2);
-        instruction i13 = new instruction("Halt");
-
-         commands.add(i1);
-         commands.add(out);
-         commands.add(i5);
-
-        
-
-        c1.run(commands);
-        c1.viewAllreg();
-        c1.readAllmem(); */
 
     }
 }

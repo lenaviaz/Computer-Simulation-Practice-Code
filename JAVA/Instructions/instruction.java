@@ -77,18 +77,7 @@ public class instruction {
     public int getOutb2(){
         return loadImm2;
     }
-
-
-
-
-
-
     //outnum
-
-
-
-
-
     //outstr
 
     public int getOutstr1(){
@@ -98,10 +87,6 @@ public class instruction {
     public int getOutstr2(){
         return loadImm2;
     }
-
-
-
-
     int rega;
     int regb;
     int regc;
@@ -138,9 +123,7 @@ public class instruction {
         return offset;
     }
 
-
     //JZ
-
     public int getjz1(){
         return loadImm1;
     }
@@ -149,9 +132,7 @@ public class instruction {
         return loadImm2;
     }
 
-
     //JReg
-
     public int getReg(){
         return offset;
     }
