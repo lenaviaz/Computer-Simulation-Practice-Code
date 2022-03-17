@@ -158,6 +158,7 @@ public class cpu {
     instruction i3 = new instruction("InB",7, 0);
     instruction storeInt = new instruction("Store", 7, 60);
     instruction one = new instruction("LoadImm", 6, 1);
+    instruction check00 = new instruction("JZ", 7, 51); //ad
 
     instruction add1 = new instruction("Add", 0, 1, 2); //adds 1 and 2 into 3
     instruction add2 = new instruction("Add", 1, 3, 0); //adds 1 and 2 into 1
@@ -234,6 +235,7 @@ public class cpu {
     commands.add(i3);
     commands.add(storeInt);
     commands.add(one);
+    commands.add(check00);
     commands.add(add1);
     commands.add(add2);
     commands.add(add3);
